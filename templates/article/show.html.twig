@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ title }} {% endblock %}
+{% block title %} {{ article.getTitle() }} {% endblock %}
 
 {% block body %}
-<h1>{{ title }}</h1>
+<h1>{{ article.getTitle() }}</h1>
 
-<h2>Comments({{ comments|length }})</h2>
-<ul>
-    {% for comment in comments %}
-        <li>{{ comment }}</li>
-    {% endfor %}
-</ul>
+    <p>{{ article.getBody() }}</p>
+
+    {% if tags|length > 0 %}
+        <p>Tags related: </p>
+        <ul>
+            {% for tag in tags %}
+                <li>{{ tag.getName() }}</li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+
+    <h2>Comments({{ comments|length }})</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

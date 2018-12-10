@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Articles {% endblock %}
+
+{% block body %}
+    <h1>Articles</h1>
+        {% for article in articles %}
+            <div class="article">
+                <div id="title"><a href="{{ path('app_aritcle_show',{slug:article.getTitle()|replace({' ': '-'}),id:article.getId() }) }}"> {{ article.getTitle() }}</a></div>
+                <div id="body">{{ article.getBody()|length > 80 ? article.getBody()|slice(0, 80) ~ '...' : article.getBody()  }}</div>
+            </div>
+        {% endfor %}
+{% endblock %}
